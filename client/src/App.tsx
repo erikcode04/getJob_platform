@@ -2,16 +2,19 @@ import React from 'react';
 import axios from 'axios';
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Signup from './pages/Signup';
+import Connect from './pages/Connect';
 import Login from './pages/Login';
+import Homepage from './pages/Homepage';
+
 
 
 const App: React.FC = () => {
 
   return (
       <Routes>
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/connect" element={<Connect />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Homepage" element={<Homepage />} />
       </Routes>
   );
 };
