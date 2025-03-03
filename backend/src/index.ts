@@ -4,6 +4,7 @@ import cors from 'cors';
 import authRouter from './routes/authRoute';
 import passport from './config/passportConfig';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,14 +16,17 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+
 app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true
 }));
-app.use(express.json());
 
+app.use(express.json());
+app.use(cookieParser());
 app.use(passport.initialize());
-app.use(passport.session()); 
+app.use(passport.session());
+
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {

@@ -8,7 +8,11 @@ declare global {
       displayName: string;
       email: string;
       profilePicture?: string;
-      // Add other properties as needed
     }
+    interface UserPayload {
+      id: string;
+      displayName: string;
+      email: string;
+  }
   }
 }

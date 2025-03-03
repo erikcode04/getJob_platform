@@ -1,20 +1,10 @@
-import { Router } from "express";
-import passport from '../config/passportConfig';
+import express from "express";
+import * as authController from "../controllers/authController";
 
-const router = Router();
+const router = express.Router();
 
-
-router.get('/google', 
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-
-
-router.get('/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    console.log("Google Auth Callback");
-    res.redirect('http://localhost:3000/Homepage');
-  }
-);
+router.get('/google/login', authController.googleLogin);
+router.get('/google/callback', authController.callback);
+router.get('/authenticateToken', authController.authenticateToken);
 
 export default router;

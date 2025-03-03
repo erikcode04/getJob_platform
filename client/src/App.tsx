@@ -1,22 +1,30 @@
 import React from 'react';
-import axios from 'axios';
-import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
 import Connect from './pages/Connect';
 import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 
+const routes: RouteObject[] = [
+  {
+    path: "/connect",
+    element: <Connect />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/Homepage",
+    element: <Homepage />,
+  },
+];
 
+const router = createBrowserRouter(routes);
 
-const App: React.FC = () => {
-
+function App() {
   return (
-      <Routes>
-        <Route path="/connect" element={<Connect />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/Homepage" element={<Homepage />} />
-      </Routes>
+    <RouterProvider router={router} future={{ v7_startTransition: true }} />
   );
-};
+}
 
 export default App;

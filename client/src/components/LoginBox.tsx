@@ -5,7 +5,7 @@ import "./componentStyles/loginBox.css";
 async function login(event : React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     try {
         event.preventDefault();
-            window.location.href = 'http://localhost:5000/auth/google';
+            window.location.href = 'http://localhost:5000/auth/google/login';
     } catch (error) {
         console.error(error);
     }
