@@ -1,12 +1,8 @@
 import { Response, Request, NextFunction } from "express";
 import passport, { Profile } from "passport";
 import authService from "../services/authService";
+import { UserPayload } from "../types/interfaces";
 
-interface UserPayload {
-   email: string;
-   displayName: string;
-     id : string;
- }
 
 export const googleLogin = (req: Request, res: Response, next: NextFunction): void => {
     passport.authenticate("google", { scope: ["profile", "email"] })(req, res, next);
