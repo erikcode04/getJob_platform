@@ -20,6 +20,7 @@ try {
         displayName: profile.displayName,
         email: profile.emails ? profile.emails[0].value : '',
         profilePicture: profile.photos ? profile.photos[0].value : '',
+        reqruiter: false, 
       },
       { new: true, upsert: true }
     );

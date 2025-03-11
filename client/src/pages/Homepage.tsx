@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import NavBar from "../components/Navbar";
 import axios from "axios";
 
 
@@ -21,8 +20,8 @@ const Homepage : React.FC = () => {
 
     return(
         <div>
-            <NavBar />
             <h1>Homepage</h1>
+            
         </div>
     )
 }

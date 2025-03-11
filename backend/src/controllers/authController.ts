@@ -27,7 +27,8 @@ export const callback = async (req: Request, res: Response, next: NextFunction):
        const fixatedUser: UserPayload = {
            id: user.id,
            displayName: user.displayName,
-           email: user.email
+           email: user.email,
+           reqruiter : false
        };
 
        console.log("fixatedUser");

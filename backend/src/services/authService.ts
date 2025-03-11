@@ -8,8 +8,10 @@ interface UserPayload {
     email: string;
     displayName: string;
       id : string;
+      reqruiter : boolean;
   }
   
+
 
   interface Token {
     Promise: string;
@@ -32,6 +34,7 @@ async function googleGenerateJwt(user: UserPayload): Promise<string>  {
 export function decodeJwt(token: string): UserPayload | null {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "") as UserPayload;
+        console.log("decoded inside decodeJwt", decoded);
         return decoded;
     } catch (err) {
         console.log(err);

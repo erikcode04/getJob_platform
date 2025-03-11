@@ -1,30 +1,29 @@
-import React from 'react';
-import { createBrowserRouter, RouterProvider, RouteObject } from 'react-router-dom';
-import Connect from './pages/Connect';
-import Login from './pages/Login';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 import Homepage from './pages/Homepage';
+import Login from './pages/Login';
+import { AuthContext } from './services/checkAuth';
 
-const routes: RouteObject[] = [
-  {
-    path: "/connect",
-    element: <Connect />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/Homepage",
-    element: <Homepage />,
-  },
-];
+export default function App() {
+  const authContext = useContext(AuthContext);
 
-const router = createBrowserRouter(routes);
+  useEffect(() => {
+    if (authContext === undefined) {
+      console.log("AuthContext is undefined");
+      return;
+    }
+    console.log("auth context", authContext);
+  }, [authContext]);
 
-function App() {
   return (
-    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={ <Layout />}>
+          <Route index element={<Homepage  />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

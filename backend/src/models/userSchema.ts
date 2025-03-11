@@ -5,6 +5,7 @@ interface IUser extends Document {
   displayName: string;
   email: string;
   profilePicture: string;
+  reqruiter: boolean;
 }
 
 const userSchema: Schema = new Schema({
@@ -12,6 +13,7 @@ const userSchema: Schema = new Schema({
   displayName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   profilePicture: { type: String },
+  reqruiter: { type: Boolean, default: false }
 });
 
 const User = mongoose.model<IUser>('User', userSchema);
