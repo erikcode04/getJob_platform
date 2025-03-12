@@ -10,7 +10,9 @@ interface IUser extends Document {
 
 const userSchema: Schema = new Schema({
   id: { type: String, required: true, unique: true },
-  displayName: { type: String, required: true },
+  displayName: { type: String, required: true, unique: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   profilePicture: { type: String },
   reqruiter: { type: Boolean, default: false }

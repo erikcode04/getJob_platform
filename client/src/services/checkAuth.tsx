@@ -30,7 +30,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     useEffect(() => {
         async function checkAuth() {
             try {
-                console.log("Sending request");
                 const response = await axios.get<AuthResponse>("http://localhost:5000/auth/authenticateToken", {
                     withCredentials: true
                 });

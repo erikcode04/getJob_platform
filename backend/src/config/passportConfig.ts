@@ -17,6 +17,8 @@ try {
       { id: profile.id },
       {
         id: profile.id,
+        firstName: profile.name?.givenName,
+        lastName: profile.name?.familyName,
         displayName: profile.displayName,
         email: profile.emails ? profile.emails[0].value : '',
         profilePicture: profile.photos ? profile.photos[0].value : '',

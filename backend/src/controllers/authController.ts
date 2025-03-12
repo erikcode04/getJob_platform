@@ -11,7 +11,7 @@ export const googleLogin = (req: Request, res: Response, next: NextFunction): vo
 export const callback = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
    try {
        const user: any = await new Promise((resolve, reject) => {
-           passport.authenticate("google", { failureRedirect: "http://localhost:3000/homepage" }, (err, user, info) => {
+           passport.authenticate("google", { failureRedirect: "http://localhost:3000/login" }, (err, user, info) => {
                if (err) {
                    return reject(new Error("Internal Server Error"));
                }
@@ -40,7 +40,7 @@ export const callback = async (req: Request, res: Response, next: NextFunction):
            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
            sameSite: 'strict'
        });
-       res.redirect("http://localhost:3000/homepage");
+       res.redirect("http://localhost:3000");
    } catch (error: any) {
        console.log(error);
        res.status(500).json({ message: error.message });
@@ -59,4 +59,10 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
      res.status(401).json({ message: "Unauthorized" });
     }
    res.status(200).json(user);
+};
+
+export const signup = (req: Request, res: Response, next: NextFunction): void => {
+    res.send("Signup");
+    const { firstName, lastName, email, password, reqruiter } = req.body;
+    console.log(firstName, lastName, email, password, reqruiter);
 };

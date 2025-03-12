@@ -10,12 +10,9 @@ interface UserPayload {
       id : string;
       reqruiter : boolean;
   }
-  
 
 
-  interface Token {
-    Promise: string;
-  }
+
 
 async function googleGenerateJwt(user: UserPayload): Promise<string>  {
 
