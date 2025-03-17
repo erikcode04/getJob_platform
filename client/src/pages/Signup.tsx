@@ -15,7 +15,9 @@ const Signup: React.FC = () => {
         email: string;
         password: string;
         reqruiter: boolean;
+        company?: string;
     }
+    
 const [displayName, setDisplayName] = useState("");
 const [reqruiter, setReqruiter] = useState(false);
 const [firstName, setFirstName] = useState("");
@@ -38,7 +40,8 @@ event.preventDefault();
         lastName,
         email,
         password,
-        reqruiter
+        reqruiter,
+        company
     }
 
     try {

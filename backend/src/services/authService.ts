@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { Profile } from 'passport';
+import { Reqruiter, IUser } from '../models/userSchema';
 import dotenv from 'dotenv';
+
 
 
 dotenv.config();
@@ -11,7 +12,21 @@ interface UserPayload {
       reqruiter : boolean;
   }
 
-
+  interface Reqruiter {
+    firstName : string,
+    lastName : string,  
+    email : string,
+    password : string,
+    reqruiter : boolean,
+    company? : string
+}
+interface User {
+  firstName : string,
+  lastName : string,  
+  email : string,
+  password : string,
+  reqruiter : boolean,
+}
 
 
 async function googleGenerateJwt(user: UserPayload): Promise<string>  {
@@ -39,7 +54,56 @@ export function decodeJwt(token: string): UserPayload | null {
     }
 }
 
+export async function signup(user: IUser): Promise<number> {
+  console.log("user inside signup", user);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  try {
+   const mailCheck = await Reqruiter.find({ email : user.email});
+   if (mailCheck.length > 0) {
+     return 0;
+   }
+   else {
+     Reqruiter.create(user);
+    return 1;
+    }
+  } catch (error) {
+    return 0;
+  }
+
+}
+
+export async function reqruiterSignup(user : Reqruiter): Promise<number> {
+  console.log("user inside reqruiterSignup", user);
+  if (!user) {
+    throw new Error("User not found");
+  }
+  try {
+   const userNameCheck = await Reqruiter.find({ firstName : user.firstName});
+   if (userNameCheck.length > 0) {
+     return 0;
+   }
+   const mailCheck = await Reqruiter.find({ email : user.email});
+   if (mailCheck.length > 0) {
+     return 0;
+   }
+   else {
+     const response = await Reqruiter.create(user);
+     console.log("response inside reqruiterSignup", response);
+    return 1;
+    }
+  } catch (error) {
+    return 0;
+  }
+
+}
+
+
 export default {
     googleGenerateJwt,
-    decodeJwt
+    decodeJwt,
+    signup,
+    reqruiterSignup
+
 }

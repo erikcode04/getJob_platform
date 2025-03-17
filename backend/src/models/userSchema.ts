@@ -18,7 +18,19 @@ const userSchema: Schema = new Schema({
   reqruiter: { type: Boolean, default: false }
 });
 
-const User = mongoose.model<IUser>('User', userSchema);
+const ReqruiterSchema: Schema = new Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  reqruiter: { type: Boolean, default: true },
+  company: { type: String, required: true }
+});
 
+
+
+const User = mongoose.model<IUser>('User', userSchema);
+const Reqruiter = mongoose.model<IUser>('Reqruiter', ReqruiterSchema);
 export default User;
+export {Reqruiter};
 export { IUser };
